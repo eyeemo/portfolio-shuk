@@ -63,7 +63,7 @@
             <div class="about-visual" v-fade-in>
                 <div class="about-main-img">
                     <img
-                        src="/images/profile.png"
+                        :src="profileImg"
                         alt="Shukri Aman"
                         style="width: 100%; height: 100%; object-fit: cover"
                     />
@@ -82,6 +82,9 @@ import { Mail, ArrowRight } from "lucide-vue-next";
 import { siGithub } from "simple-icons";
 import BrandIcon from "./BrandIcon.vue";
 import { linkedinPath } from "../icons.js";
+// Import the image as a module so Vite hashes it and resolves the correct
+// URL in every build (Laravel /build/… and the static GitHub Pages build).
+import profileImg from "../../images/profile.png";
 
 const stats = [
     { num: "23", label: "Age" },

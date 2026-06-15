@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--
+  index.html — entry point for the STATIC build (GitHub Pages).
+
+  The normal site is served by Laravel via resources/views/welcome.blade.php.
+  This file is only used by `npm run build:static` (vite.config.static.js),
+  which produces a backend-free copy of the Vue app in /dist for hosting on
+  GitHub Pages. No PHP, no database — the contact section is just mailto links.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shukri Aman — Backend Developer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/resources/js/static.js"></script>
+  </body>
+</html>

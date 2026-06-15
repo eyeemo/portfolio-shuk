@@ -15,7 +15,7 @@
                 real-world problems.
             </p>
             <div class="hero-actions">
-                <a href="#projects" class="btn-primary">View Projects <ArrowRight :size="16" /></a>
+                <a href="#about" class="btn-primary">View Me <ArrowRight :size="16" /></a>
                 <a href="#contact" class="btn-outline">Get in Touch</a>
             </div>
         </div>

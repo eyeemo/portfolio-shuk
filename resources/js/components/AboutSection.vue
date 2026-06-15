@@ -3,7 +3,8 @@
 <template>
     <section id="about">
         <div class="about-layout">
-            <div v-fade-in>
+            <!-- intro: eyebrow + title + paragraph -->
+            <div class="about-intro" v-fade-in>
                 <div class="section-eyebrow">About Me</div>
                 <h2 class="section-title">Hi, I'm<br />Shukri Aman</h2>
                 <p class="section-desc">
@@ -13,7 +14,26 @@
                     MVC architecture, RESTful API development, and MySQL
                     optimization — a proactive, detail-oriented problem solver.
                 </p>
+            </div>
 
+            <!-- photo: on desktop sits on the right; on mobile it slots in
+                right after the intro paragraph (grid-template-areas). -->
+            <div class="about-visual" v-fade-in>
+                <div class="about-main-img">
+                    <img
+                        :src="profileImg"
+                        alt="Shukri Aman"
+                        style="width: 100%; height: 100%; object-fit: cover"
+                    />
+                </div>
+                <div class="about-accent-box">
+                    <div class="big-num">2+</div>
+                    <p>Years turning coffee into code</p>
+                </div>
+            </div>
+
+            <!-- rest: stats + contact links + button -->
+            <div class="about-rest" v-fade-in>
                 <div class="stats-row">
                     <div
                         class="stat-card"
@@ -58,20 +78,6 @@
                     style="display: inline-flex; align-items: center; gap: 8px"
                     >My Expertise <ArrowRight :size="16"
                 /></a>
-            </div>
-
-            <div class="about-visual" v-fade-in>
-                <div class="about-main-img">
-                    <img
-                        :src="profileImg"
-                        alt="Shukri Aman"
-                        style="width: 100%; height: 100%; object-fit: cover"
-                    />
-                </div>
-                <div class="about-accent-box">
-                    <div class="big-num">2+</div>
-                    <p>Years turning coffee into code</p>
-                </div>
             </div>
         </div>
     </section>

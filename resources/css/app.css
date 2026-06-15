@@ -460,9 +460,17 @@ section { padding: 100px 5%; }
 .about-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
+  /* text stacks in the left column (intro on top, the rest below) while the
+     photo spans both rows on the right */
+  grid-template-areas:
+    "intro visual"
+    "rest  visual";
+  column-gap: 80px;
+  align-items: start;
 }
+.about-intro { grid-area: intro; }
+.about-rest  { grid-area: rest; }
+.about-visual { grid-area: visual; align-self: center; }
 
 .stats-row {
   display: grid;
@@ -1015,8 +1023,18 @@ footer a:hover { color: var(--text); }
   .hero-visual { display: none; }
   .services-header { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
-  .about-layout { grid-template-columns: 1fr; }
-  .about-visual { display: none; }
+  /* Single column; photo slots between the intro paragraph and the stats */
+  .about-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "intro"
+      "visual"
+      "rest";
+    gap: 32px;
+  }
+  .about-visual { height: auto; }
+  .about-main-img { width: 100%; height: 360px; margin-left: 0; }
+  .about-accent-box { width: 55%; }
   .projects-grid { grid-template-columns: 1fr; }
   .testimonials-layout { grid-template-columns: 1fr; }
   .faq-layout { grid-template-columns: 1fr; }

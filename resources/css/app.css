@@ -226,6 +226,17 @@ nav {
 }
 .btn-outline:hover { border-color: var(--muted); transform: translateY(-2px); }
 
+/* Press feedback — a quick "squish" while the button is held down.
+   The fast 0.08s transition makes the press feel snappy and tactile. */
+.btn-primary:active,
+.btn-outline:active,
+.nav-cta:active,
+.btn-submit:active,
+.social-btn:active {
+  transform: translateY(0) scale(0.95);
+  transition-duration: 0.08s;
+}
+
 .hero-visual {
   position: relative;
   height: 520px;
@@ -984,7 +995,7 @@ section { padding: 100px 5%; }
   border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
   font-size: 16px;
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
   cursor: pointer;
 }
 .social-btn:hover { border-color: var(--accent); background: var(--bg3); }

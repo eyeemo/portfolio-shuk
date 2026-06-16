@@ -60,13 +60,13 @@ const stack = [
     { name: "MySQL", brand: siMysql, color: "#4479A1" },
     { name: "PostgreSQL", brand: siPostgresql, color: "#4169E1" },
     { name: "REST API", lucide: Webhook, color: "#10B981" },
-    { name: ".NET", brand: siDotnet, color: "#512BD4" },
+    // { name: ".NET", brand: siDotnet, color: "#512BD4" },
     // tooling
     { name: "Git", brand: siGit, color: "#F03C2E" },
     { name: "Postman", brand: siPostman, color: "#FF6C37" },
     // frontend — used to build this very site
     { name: "JavaScript", brand: siJavascript, color: "#C9A000" },
-    { name: "Vue.js", brand: siVuedotjs, color: "#42B883" },
-    { name: "Vite", brand: siVite, color: "#8B5CF6" },
+    // { name: "Vue.js", brand: siVuedotjs, color: "#42B883" },
+    // { name: "Vite", brand: siVite, color: "#8B5CF6" },
 ];
 </script>

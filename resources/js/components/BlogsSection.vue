@@ -1,6 +1,6 @@
-<!-- BlogsSection.vue — repurposed into Experience & Education.
-     Three cards driven by an array. Each item carries an optional
-     `thumbClass` or `thumbStyle` for its banner. -->
+<!-- BlogsSection.vue — Experience & Education shown as a clean vertical
+     timeline. Each entry: date + type tag, role/qualification, and a short
+     description. Driven by the `timeline` array. -->
 <template>
     <section id="blogs">
         <div class="blogs-header" v-fade-in>
@@ -10,22 +10,21 @@
             </div>
         </div>
 
-        <div class="blogs-grid" v-fade-in>
-            <div class="blog-card" v-for="item in timeline" :key="item.title">
-                <!-- bind either a class or an inline style depending on the data -->
-                <div
-                    class="blog-thumb"
-                    :class="item.thumbClass"
-                    :style="item.thumbStyle"
-                >
-                    <div class="img-placeholder">{{ item.tag }}</div>
+        <div class="timeline">
+            <div
+                class="timeline-item"
+                v-for="(item, i) in timeline"
+                :key="item.title"
+                v-fade-in
+                :style="{ transitionDelay: i * 0.15 + 's' }"
+            >
+                <span class="timeline-marker"></span>
+                <div class="timeline-top">
+                    <span class="timeline-date">{{ item.date }}</span>
+                    <span class="timeline-tag">{{ item.tag }}</span>
                 </div>
-                <div class="blog-info">
-                    <div class="blog-tag">{{ item.tag }}</div>
-                    <div class="blog-date">{{ item.date }}</div>
-                    <div class="blog-title">{{ item.title }}</div>
-                    <p class="blog-excerpt">{{ item.excerpt }}</p>
-                </div>
+                <h3 class="timeline-title">{{ item.title }}</h3>
+                <p class="timeline-desc">{{ item.excerpt }}</p>
             </div>
         </div>
     </section>
@@ -34,7 +33,6 @@
 <script setup>
 const timeline = [
     {
-        thumbClass: "blog-thumb-1",
         tag: "Work",
         date: "Aug 2024 – Present",
         title: "Junior PHP Developer · Unijaya Resources",
@@ -42,7 +40,6 @@ const timeline = [
             "Developing and maintaining Laravel web apps for government systems — RESTful APIs, MySQL optimization, JasperReports integration and Git collaboration.",
     },
     {
-        thumbClass: "blog-thumb-2",
         tag: "Internship",
         date: "Aug 2023 – Jan 2024",
         title: "IT Support · Interlink Impact Holding",
@@ -50,7 +47,6 @@ const timeline = [
             "Provided IT support, managed company projects including clinic openings (40% process improvement), and assisted with quotations and invoicing.",
     },
     {
-        thumbStyle: "background: linear-gradient(135deg, #1f1a0e, #2e2610);",
         tag: "Education",
         date: "Aug 2021 – Jan 2024",
         title: "Diploma in Information Technology · UTHM",

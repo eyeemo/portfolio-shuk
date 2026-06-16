@@ -11,13 +11,9 @@
         </div>
 
         <div class="tech-badges" v-fade-in>
-            <div
-                class="tech-badge"
-                v-for="t in stack"
-                :key="t.name"
-                :style="{ background: t.color }"
-            >
-                <span class="tech-icon">
+            <div class="tech-badge" v-for="t in stack" :key="t.name">
+                <!-- only the logo keeps the brand colour; the chip stays neutral -->
+                <span class="tech-icon" :style="{ color: t.color }">
                     <!-- brand logo: draw the simple-icons SVG path -->
                     <svg
                         v-if="t.brand"

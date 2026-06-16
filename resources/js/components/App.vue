@@ -14,8 +14,8 @@
 <template>
     <NavBar />
 
-    <HeroSection />
-    <hr class="divider" />
+    <!-- <HeroSection />
+    <hr class="divider" /> -->
 
     <AboutSection />
     <hr class="divider" />
@@ -29,13 +29,13 @@
     <ServicesSection />
     <hr class="divider" />
 
-    <TechStack />
-    <hr class="divider" />
-
     <!-- <FaqSection />
     <hr class="divider" /> -->
 
     <BlogsSection />
+    <hr class="divider" />
+
+    <TechStack />
     <hr class="divider" />
 
     <ContactSection />

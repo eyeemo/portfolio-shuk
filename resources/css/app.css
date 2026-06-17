@@ -17,6 +17,7 @@
   --on-accent: #ffffff;            /* text/icons sitting on an --accent fill */
   --nav-bg: rgba(236, 236, 238, 0.85);
   --nav-bg-strong: rgba(236, 236, 238, 0.97);
+  --grid-line: rgba(17, 17, 17, 0.06);   /* faint background grid */
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
@@ -36,6 +37,7 @@
   --on-accent: #111111;
   --nav-bg: rgba(15, 15, 15, 0.85);
   --nav-bg-strong: rgba(15, 15, 15, 0.97);
+  --grid-line: rgba(255, 255, 255, 0.055);
 }
 
 html {
@@ -46,8 +48,24 @@ html {
   overflow-x: hidden;
 }
 
+/* Theme switch uses a circular clip-path reveal instead of the default
+   cross-fade (see toggleTheme in NavBar.vue). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+/* the incoming theme paints on top so the circle "wipes" it in */
+::view-transition-new(root) { z-index: 1; }
+::view-transition-old(root) { z-index: 0; }
+
 body {
-  background: var(--bg);
+  background-color: var(--bg);
+  /* subtle blueprint grid behind everything */
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 46px 46px;
   color: var(--text);
   font-family: var(--font-body);
   font-size: 16px;
@@ -451,7 +469,7 @@ section { padding: 100px 5%; }
 }
 
 /* ── SERVICES ── */
-#services { background: var(--bg); }
+#services { background: transparent; }
 
 .services-header {
   display: grid;
@@ -461,14 +479,29 @@ section { padding: 100px 5%; }
   margin-bottom: 60px;
 }
 
+/* themed intro paragraph: left accent rule + emphasised keywords */
+.services-desc {
+  border-left: 2px solid var(--border);
+  padding-left: 20px;
+}
+.services-desc .hl {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
+  gap: 1px;
+  /* the gap reveals this colour, drawing crisp hairline dividers */
+  background: var(--border);
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
 }
+
+/* opacity-only fade so the staggered cards aren't clipped by overflow:hidden */
+.service-card.fade-in { transform: none; }
 
 .service-card {
   background: var(--bg);
@@ -970,6 +1003,28 @@ section { padding: 100px 5%; }
   padding: 2px 10px;
 }
 
+/* "Present" live indicator on the current role */
+.timeline-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #15a34a;
+}
+[data-theme="dark"] .timeline-live { color: #4ade80; }
+.live-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: pulse 2s infinite;
+}
+/* the current entry's dot glows green too */
+.timeline-marker.current {
+  background: #4ade80;
+  box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.18);
+}
+
 .timeline-title {
   font-family: var(--font-display);
   font-size: 18px;
@@ -985,7 +1040,7 @@ section { padding: 100px 5%; }
 }
 
 /* ── CONTACT ── */
-#contact { background: var(--bg); }
+#contact { background: transparent; }
 
 /* Clean, centred contact block (no form) */
 .contact-clean {

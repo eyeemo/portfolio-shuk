@@ -5,21 +5,24 @@
     <section id="services">
         <div class="services-header" v-fade-in>
             <div>
-                <div class="section-eyebrow">What I Do</div>
+                <div class="section-eyebrow">What I Do ?</div>
                 <h2 class="section-title">my<br />expertise</h2>
             </div>
-            <p class="section-desc">
-                I live on the backend — building things that work, fixing things
-                that don't, and making slow queries fast. Here's what I'm good
-                at. 👇
+            <p class="section-desc services-desc">
+                I live on the <span class="hl">backend</span> — building things
+                that <span class="hl">work</span>, fixing things that don't, and
+                making slow queries <span class="hl">fast</span>. Here's what I'm
+                good at. 👇
             </p>
         </div>
 
-        <div class="services-grid" v-fade-in>
+        <div class="services-grid">
             <div
                 class="service-card"
-                v-for="service in services"
+                v-for="(service, i) in services"
                 :key="service.num"
+                v-fade-in
+                :style="{ transitionDelay: i * 0.1 + 's' }"
             >
                 <div class="service-num">{{ service.num }}</div>
                 <div class="service-title">{{ service.title }}</div>

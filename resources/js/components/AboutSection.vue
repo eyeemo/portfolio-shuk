@@ -7,7 +7,7 @@
             <div class="about-intro" v-fade-in>
                 <!-- <div class="section-eyebrow">About Me</div> -->
                 <h2 class="section-title" ref="titleEl">
-                    Hi, I'm<br /><span>{{ typedName }}</span
+                    <br>Hi, I'm<br/><span>{{ typedName }}</span
                     ><span class="type-cursor"></span>
                 </h2>
                 <p class="section-desc">

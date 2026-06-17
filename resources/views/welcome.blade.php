@@ -20,9 +20,8 @@
     {{-- Set the theme before the page paints so there is no light→dark flash --}}
     <script>
         (function() {
-            var t = localStorage.getItem("theme");
-            if (!t)
-                t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            // default to dark (moon) unless the visitor previously chose otherwise
+            var t = localStorage.getItem("theme") || "dark";
             document.documentElement.setAttribute("data-theme", t);
         })();
     </script>

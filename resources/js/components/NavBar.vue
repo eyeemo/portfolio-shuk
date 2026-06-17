@@ -6,7 +6,7 @@
         <div class="nav-actions">
             <!-- Light/dark theme switch — pill that slides a sun↔moon circle.
                  The hidden checkbox drives the CSS; isDark keeps it in sync. -->
-            <label class="theme-switch">
+            <label class="theme-switch" ref="toggleEl">
                 <input
                     type="checkbox"
                     class="theme-switch__checkbox"
@@ -30,6 +30,7 @@ import { Sun, Moon } from "lucide-vue-next";
 
 // whether dark theme is active
 const isDark = ref(false);
+const toggleEl = ref(null);
 
 // Set the theme on <html> so the CSS [data-theme="dark"] overrides kick in.
 function applyTheme(dark) {
@@ -37,17 +38,50 @@ function applyTheme(dark) {
     document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
 }
 
-// Flip the theme and remember the choice for next visit.
+// Flip the theme. When the browser supports the View Transitions API we play
+// a circular reveal — the new theme expands as a circle from the toggle.
 function toggleTheme() {
     const next = !isDark.value;
-    applyTheme(next);
-    localStorage.setItem("theme", next ? "dark" : "light");
+    const commit = () => {
+        applyTheme(next);
+        localStorage.setItem("theme", next ? "dark" : "light");
+    };
+
+    if (!document.startViewTransition || !toggleEl.value) {
+        commit();
+        return;
+    }
+
+    // origin = centre of the toggle button
+    const r = toggleEl.value.getBoundingClientRect();
+    const x = r.left + r.width / 2;
+    const y = r.top + r.height / 2;
+    const endRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y),
+    );
+
+    const transition = document.startViewTransition(commit);
+    transition.ready.then(() => {
+        document.documentElement.animate(
+            {
+                clipPath: [
+                    `circle(0px at ${x}px ${y}px)`,
+                    `circle(${endRadius}px at ${x}px ${y}px)`,
+                ],
+            },
+            {
+                duration: 550,
+                easing: "ease-in-out",
+                pseudoElement: "::view-transition-new(root)",
+            },
+        );
+    });
 }
 
 onMounted(() => {
-    // Use the saved choice if any, otherwise follow the OS light/dark setting.
+    // Saved choice wins; otherwise default to dark (moon).
     const saved = localStorage.getItem("theme");
-    if (saved) applyTheme(saved === "dark");
-    else applyTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    applyTheme(saved ? saved === "dark" : true);
 });
 </script>

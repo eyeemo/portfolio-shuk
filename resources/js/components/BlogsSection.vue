@@ -18,10 +18,16 @@
                 v-fade-in
                 :style="{ transitionDelay: i * 0.15 + 's' }"
             >
-                <span class="timeline-marker"></span>
+                <span
+                    class="timeline-marker"
+                    :class="{ current: item.current }"
+                ></span>
                 <div class="timeline-top">
                     <span class="timeline-date">{{ item.date }}</span>
                     <span class="timeline-tag">{{ item.tag }}</span>
+                    <span v-if="item.current" class="timeline-live">
+                        <span class="live-dot"></span>Present
+                    </span>
                 </div>
                 <h3 class="timeline-title">{{ item.title }}</h3>
                 <p class="timeline-desc">{{ item.excerpt }}</p>
@@ -34,7 +40,8 @@
 const timeline = [
     {
         tag: "Work",
-        date: "Aug 2024 – Present",
+        date: "Aug 2024",
+        current: true,
         title: "Junior PHP Developer · Unijaya Resources",
         excerpt:
             "Developing and maintaining Laravel web apps for government systems — RESTful APIs, MySQL optimization, JasperReports integration and Git collaboration.",

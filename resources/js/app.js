@@ -14,6 +14,16 @@
 import { createApp } from 'vue';
 import App from './components/App.vue';
 import fadeIn from './directives/fadeIn';
+// Importing the logo lets Vite hash it and give the correct URL in every
+// build (Laravel /build/… and the static GitHub Pages build).
+import faviconUrl from '../images/sa-log-web.png';
+
+// Set the browser-tab icon (favicon) to the "sa" logo.
+const favicon =
+    document.querySelector("link[rel~='icon']") || document.createElement('link');
+favicon.rel = 'icon';
+favicon.href = faviconUrl;
+document.head.appendChild(favicon);
 
 // createApp(App) builds a Vue application using App.vue as the root component.
 const app = createApp(App);

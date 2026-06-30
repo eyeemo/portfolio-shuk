@@ -11,7 +11,7 @@
                     ><span class="type-cursor"></span>
                 </h2>
                 <p class="section-desc">
-                    Backend PHP Developer with nearly 2 years of experience
+                    Backend PHP Developer with 2 years of experience
                     building and maintaining web applications with Laravel,
                     particularly for government sector systems. Proficient in
                     MVC architecture, RESTful API development, and MySQL
@@ -97,9 +97,9 @@ import { linkedinPath } from "../icons.js";
 import profileImg from "../../images/profile.png";
 
 const stats = [
-    { num: "23", label: "Age" },
+    { num: "3AM", label: "Debugging Hours" },
     { num: "99%", label: "Coffee Dependency" },
-    { num: "1", label: "Keyboard Warrior" },
+    { num: "+1", label: "New Friend Every Day" },
 ];
 
 // Split each value into prefix + number + suffix so "99%" counts to 99 and

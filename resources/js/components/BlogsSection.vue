@@ -42,7 +42,7 @@ const timeline = [
         tag: "Work",
         date: "Aug 2024",
         current: true,
-        title: "Junior PHP Developer · Unijaya Resources",
+        title: "PHP Developer · Unijaya Resources",
         excerpt:
             "Developing and maintaining Laravel web apps for government systems — RESTful APIs, MySQL optimization, JasperReports integration and Git collaboration.",
     },
